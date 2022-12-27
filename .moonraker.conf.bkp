@@ -1,0 +1,128 @@
+[server]
+host = 0.0.0.0
+port = 7125
+klippy_uds_address = /home/pi/printer_data/comms/klippy.sock
+max_upload_size = 1024
+
+[file_manager]
+queue_gcode_uploads = false
+enable_object_processing = true
+
+[machine]
+provider = systemd_dbus
+
+[database]
+
+[data_store]
+temperature_store_size = 2400
+gcode_store_size = 1000
+
+[job_queue]
+load_on_startup = false
+automatic_transition = false
+
+[announcements]
+subscriptions = 
+	fluidd
+	klipper
+	mainsail
+	mobileraker
+	moonraker-telegram-bot
+	moonraker
+dev_mode = false
+
+[authorization]
+login_timeout = 90
+force_logins = false
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	http://*.lan
+	http://*.local
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	https://app.fluidd.xyz
+	http://app.fluidd.xyz
+
+[octoprint_compat]
+enable_ufp = true
+
+[history]
+
+[update_manager]
+enable_auto_refresh = true
+refresh_interval = 12
+enable_system_updates = true
+enable_packagekit = true
+channel = dev
+
+[update_manager mainsail]
+type = web
+channel = beta
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager fluidd]
+type = web
+channel = beta
+repo = fluidd-core/fluidd
+path = ~/fluidd
+
+[update_manager CanBoot]
+type = git_repo
+path = /home/pi/CanBoot
+origin = https://github.com/Arksine/CanBoot.git
+primary_branch = master
+is_system_service = false
+
+[update_manager KlipperScreen]
+type = git_repo
+path = /home/pi/KlipperScreen
+origin = https://github.com/jordanruthe/KlipperScreen.git
+primary_branch = master
+env = /home/pi/.KlipperScreen-env/bin/python
+requirements = scripts/KlipperScreen-requirements.txt
+install_script = scripts/KlipperScreen-install.sh
+is_system_service = true
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+primary_branch = master
+managed_services = crowsnest
+
+[update_manager timelapse]
+type = git_repo
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+primary_branch = main
+install_script = install.sh
+managed_services = klipper moonraker
+
+[update_manager led_effect]
+type = git_repo
+path = /home/pi/klipper-led_effect
+origin = https://github.com/julianschill/klipper-led_effect.git
+primary_branch = master
+is_system_service = false
+
+[update_manager NeoPixel_Templates]
+type = git_repo
+path = /home/pi/klipper-neopixel
+origin = https://github.com/digitalninja-ro/klipper-neopixel.git
+primary_branch = master
+is_system_service = false
+
+[zeroconf]
+
+[secrets]
+
+[timelapse]
+
